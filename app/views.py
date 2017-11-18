@@ -32,6 +32,13 @@ def login():
 	else:
 		return render_template('login.html')
 	
+@views.route('/create', methods=["GET", "POST"])
+def create():
+	if request.method == "POST":
+		return redirect("/")
+	else:
+		return render_template('create.html')
+	
 @views.route('/about')
 def about():
 	return render_template('about.html')
