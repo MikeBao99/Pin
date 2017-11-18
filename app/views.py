@@ -5,8 +5,7 @@ from tempfile import mkdtemp
 import urllib
 from werkzeug import * #TODO: actually look at imports
 
-#views = Blueprint('views', __name__)
-views = Flask(__name__)
+views = Blueprint('views', __name__)
 views.config["SESSION_FILE_DIR"] = mkdtemp()
 views.config["SESSION_PERMANENT"] = False
 views.config["SESSION_TYPE"] = "filesystem"
