@@ -12,14 +12,14 @@ extensions = set(['jpg'])
 def homepage():
 	return render_template('homepage.html')
 
-@views.route('/register', methods=["GET" "POST"])
+@views.route('/register', methods=["GET", "POST"])
 def register():
 	if request.method == "POST":
 		return redirect("/")
 	else:
 		return render_template('register.html')
 
-@views.route('/login', methods=["GET" "POST"])
+@views.route('/login', methods=["GET", "POST"])
 def login():
 	if request.method == "POST":
 		return redirect("/")
