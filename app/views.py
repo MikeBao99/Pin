@@ -5,6 +5,11 @@ import urllib
 from werkzeug import * #TODO: actually look at imports
 
 views = Blueprint('views', __name__)
+views.config["SESSION_FILE_DIR"] = mkdtemp()
+views.config["SESSION_PERMANENT"] = False
+views.config["SESSION_TYPE"] = "filesystem"
+Session(views)
+
 
 extensions = set(['jpg'])
 
