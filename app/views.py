@@ -7,6 +7,7 @@ from werkzeug import * #TODO: actually look at imports
 
 views = Blueprint('views', __name__)
 
+app=Flask(__name__)
 
 extensions = set(['jpg'])
 
