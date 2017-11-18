@@ -3,7 +3,7 @@ from app.views import views
 
 import os
 
-app.register_blueprint(views)
+#app.register_blueprint(views)
 
 # go to localhost:8000 to view
 if 'DEBUG' in os.environ:
