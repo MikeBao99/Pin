@@ -1,5 +1,5 @@
 from app import app
-#from app.views import views
+from app.views import views
 
 import os
 
