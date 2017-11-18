@@ -15,9 +15,16 @@ def homepage():
 @views.route('/register', methods=["GET" "POST"])
 def register():
 	if request.method == "POST":
-		redirect("/")
+		return redirect("/")
 	else:
-		render_template('register.html')
+		return render_template('register.html')
+
+@views.route('/register', methods=["GET" "POST"])
+def register():
+	if request.method == "POST":
+		return redirect("/")
+	else:
+		return render_template('login.html')
 	
 @views.route('/about')
 def about():
