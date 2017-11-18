@@ -19,8 +19,8 @@ def register():
 	else:
 		return render_template('register.html')
 
-@views.route('/register', methods=["GET" "POST"])
-def register():
+@views.route('/login', methods=["GET" "POST"])
+def login():
 	if request.method == "POST":
 		return redirect("/")
 	else:
