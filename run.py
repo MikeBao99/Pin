@@ -1,9 +1,8 @@
 from app import app
-#from app.views import views
-
 import os
+from Flask import *
 
-#app.register_blueprint(views)
+app = Flask(__name__)
 
 # go to localhost:8000 to view
 if 'DEBUG' in os.environ:
