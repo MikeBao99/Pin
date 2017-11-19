@@ -40,8 +40,7 @@ def register():
 		if not result:
 			# check if username is valid
 			return render_template("error.html")
-		row = db.execute("SELECT * FROM users WHERE username = :username",
-						 username=request.form.get("username"))
+		row = db.execute("SELECT * FROM users WHERE username = '%s'" % (request.form.get("username")))
 		session["user_id"] = row[0]["id"]
 		return redirect("/")
 	else:
