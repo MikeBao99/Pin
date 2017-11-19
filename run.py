@@ -64,13 +64,13 @@ def login():
 
         # Query database for username
         rows = db.execute("SELECT * FROM users WHERE username = '%s'" % (request.form.get("username")))
-
+	first = rows.fetchone()
         # Ensure username exists and password is correct
-        if not rows.fetchone() or not check_password_hash(rows.fetchone()["hash"], request.form.get("password")):
+        if not first or not check_password_hash(rows.fetchone()["hash"], request.form.get("password")):
             return render_template("error.html")
 
         # Remember which user has logged in
-        session["user_id"] = rows.fetchone()["id"]
+        session["user_id"] = first["id"]
 
         # Redirect user to home page
         return redirect("/")
