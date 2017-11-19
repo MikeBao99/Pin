@@ -66,7 +66,7 @@ def login():
         rows = db.execute("SELECT * FROM users WHERE username = '%s'" % (request.form.get("username")))
 
         # Ensure username exists and password is correct
-        if len(rows) != 1 or not check_password_hash(rows.fetchone()["hash"], request.form.get("password")):
+        if len(rows.fetchall()) != 1 or not check_password_hash(rows.fetchone()["hash"], request.form.get("password")):
             return render_template("error.html")
 
         # Remember which user has logged in
