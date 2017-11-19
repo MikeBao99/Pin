@@ -41,7 +41,7 @@ def register():
 			# check if username is valid
 			return render_template("error.html")
 		row = db.execute("SELECT * FROM users WHERE username = '%s'" % (request.form.get("username")))
-		session["user_id"] = row[0]["id"]
+		session["user_id"] = row.fetchone()["id"]
 		return redirect("/")
 	else:
 		return render_template("register.html")
