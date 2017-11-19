@@ -62,6 +62,13 @@ def create():
 	else:
 		return render_template('create.html')
 
+@app.route('/manage', methods=["GET", "POST"])
+def manage():
+	if request.method == "POST":
+		return redirect("/")
+	else:
+		return render_template('manage.html')
+
 # go to localhost:8000 to view
 if 'DEBUG' in os.environ:
 	app.run(host = '0.0.0.0', port = 8000)
