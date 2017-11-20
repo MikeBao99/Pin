@@ -12,19 +12,7 @@
         <div class="form-group">
             <input class="form-control" name="password" placeholder="Password" type="password"/>
         </div>
-        <button class="btn btn-primary" type="submit">Log In</button>
+        <input type="submit"><button class="btn btn-primary" type="submit">Log In</button></input>
     </form>
-    <script>
-        $(document).ready(function(){
-        $('#password').keypress(function(e){
-         if(e.keyCode==13)
-            $('#linkadd').click();
-         });
-        });
-       $('#username').keypress(function(e){
-         if(e.keyCode==13)
-            $('#linkadd').click();
-         });
-        });
-    </script>
+    
 {% endblock %}
