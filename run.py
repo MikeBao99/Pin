@@ -90,6 +90,10 @@ def logout():
     # Redirect user to login form
     return redirect("/")
 
+@app.route('/error', methods=["GET"]
+def error():
+	   return render_template("error.html")
+
 @app.route('/create', methods=["GET", "POST"])
 @login_required	
 def create():
