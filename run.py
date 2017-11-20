@@ -57,18 +57,18 @@ def login():
 
         # Ensure username was submitted
         if not request.form.get("username"):
-            return redirect("error.html")
+            return redirect("/error")
 
         # Ensure password was submitted
         elif not request.form.get("password"):
-            return redirect("error.html")
+            return redirect("/error")
 
         # Query database for username
         rows = db.execute("SELECT * FROM users WHERE username = '%s'" % (request.form.get("username")))
 	first = rows.fetchone()
         # Ensure username exists and password is correct
         if not first or not check_password_hash(first["hash"], request.form.get("password")):
-            return redirect("error.html", error="Incorrect username and password!")
+            return redirect("/error", error="Incorrect username and password!")
 
         # Remember which user has logged in
         session["user_id"] = first['id']
