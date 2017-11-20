@@ -1,5 +1,5 @@
 import os
-from functools import wraps
+from helpers import *
 from sqlalchemy import create_engine
 from flask import Flask, flash, redirect, render_template, request, session
 from flask_session import Session
@@ -16,18 +16,6 @@ Session(app)
 
 # Configure PostgreSQL database using SQLAlchemy
 db = create_engine('postgres://lgexotyvoyetfh:0c61846252d51c314b5f925d9729ad5bc818ca97deb54cc9592759bfe4e2e2ab@ec2-107-20-214-99.compute-1.amazonaws.com:5432/d223jo1u4l3s6f')
-
-def login_required(f):
-    """
-    Decorate routes to require login.
-    """
-    @wraps(f)
-    def decorated_function(*args, **kwargs):
-        if session.get("user_id") is None:
-            return redirect("/login")
-        return f(*args, **kwargs)
-    return decorated_function
-
 
 @app.route('/', methods=["GET", "POST"])
 def homepage():  
