@@ -62,8 +62,8 @@
     <body>
         <div class="page-container">
 
-            {% block navbar %}
-		{% if session.user_id %}
+           
+		{% if session.user_id == false %}
             <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
                 <div class="container">
                     <div class="navbar-header">
@@ -103,7 +103,7 @@
             </div>
 
 		{% endif %}
-	  {% endblock %}
+	  
 		<div class="jumbotron jumbotron-fluid" style="padding-top: 100px !important">
 		  <div class="container text-center">
 		    <h1 class="display-3">Pin &#21697;</h1>
