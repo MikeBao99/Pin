@@ -26,21 +26,21 @@ def register():
 	if request.method == "POST":
 		# Ensure username was submitted
 		if not request.form.get("username"):
-			return render_template("error.html")
+			return redirect("error.html")
 		# Ensure password was submitted
 		if not request.form.get("password"):
-			return render_template("error.html")
+			return redirect("error.html")
 		if not request.form.get("confirmation"):
-			return render_template("error.html")
+			return redirect("error.html")
 
 		if request.form.get("password") != request.form.get("confirmation"):
-			return render_template("error.html")
+			return redirect("error.html")
 		password_hash = generate_password_hash(request.form.get("password"))
 		try:
 			db.execute("INSERT INTO users (username, hash) VALUES('%s', '%s')" % (request.form.get("username"), password_hash))
 		except:
 			# check if username is valid
-			return render_template("error.html", error="Username already exists!")
+			return redirect("error.html", error="Username already exists!")
 		row = db.execute("SELECT * FROM users WHERE username = '%s'" % (request.form.get("username")))
 		session["user_id"] = row.fetchone()["id"]
 		return redirect("/")
@@ -57,18 +57,18 @@ def login():
 
         # Ensure username was submitted
         if not request.form.get("username"):
-            return render_template("error.html")
+            return redirect("error.html")
 
         # Ensure password was submitted
         elif not request.form.get("password"):
-            return render_template("error.html")
+            return redirect("error.html")
 
         # Query database for username
         rows = db.execute("SELECT * FROM users WHERE username = '%s'" % (request.form.get("username")))
 	first = rows.fetchone()
         # Ensure username exists and password is correct
         if not first or not check_password_hash(first["hash"], request.form.get("password")):
-            return render_template("error.html", error="Incorrect username and password!")
+            return redirect("error.html", error="Incorrect username and password!")
 
         # Remember which user has logged in
         session["user_id"] = first['id']
