@@ -90,7 +90,7 @@ def logout():
     # Redirect user to login form
     return redirect("/")
 
-@app.route('/error', methods=["GET"]
+@app.route('/error', methods=["GET"])
 def error():
 	   return render_template("error.html")
 
