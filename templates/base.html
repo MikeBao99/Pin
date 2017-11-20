@@ -45,7 +45,7 @@
             <link rel="stylesheet" href="{{url_for("static", filename = "lesson.css")}}">
 	    <style>
 		.jumbotron { background: rgba(255, 255, 255, 0)}
-		.navbar-header { background: rgba(255, 255, 255, 0.1) }
+		.navbar { background: rgba(255, 255, 255, 0.1) }
 		.top10 { margin-top:10px; }
 		.table th {
    			text-align: center;   
@@ -64,6 +64,7 @@
 
            
 		{% if session.user_id %}
+		<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
             <div class="container">
                     <div class="navbar-header">
                         <button type="button" class="navbar-toggle" data-toggle="offcanvas" data-target=".sidebar-nav">
