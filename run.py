@@ -40,7 +40,7 @@ def register():
 			db.execute("INSERT INTO users (username, hash) VALUES('%s', '%s')" % (request.form.get("username"), password_hash))
 		except:
 			# check if username is valid
-			return render_template("error.html")
+			return render_template("error.html", error="Username already exists!")
 		row = db.execute("SELECT * FROM users WHERE username = '%s'" % (request.form.get("username")))
 		session["user_id"] = row.fetchone()["id"]
 		return redirect("/")
@@ -68,7 +68,7 @@ def login():
 	first = rows.fetchone()
         # Ensure username exists and password is correct
         if not first or not check_password_hash(first["hash"], request.form.get("password")):
-            return render_template("error.html")
+            return render_template("error.html", error="Incorrect username and password!")
 
         # Remember which user has logged in
         session["user_id"] = first['id']
