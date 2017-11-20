@@ -26,21 +26,21 @@ def register():
 	if request.method == "POST":
 		# Ensure username was submitted
 		if not request.form.get("username"):
-			return redirect("error.html")
+			return redirect("/error")
 		# Ensure password was submitted
 		if not request.form.get("password"):
-			return redirect("error.html")
+			return redirect("/error")
 		if not request.form.get("confirmation"):
-			return redirect("error.html")
+			return redirect("/error")
 
 		if request.form.get("password") != request.form.get("confirmation"):
-			return redirect("error.html")
+			return redirect("/error")
 		password_hash = generate_password_hash(request.form.get("password"))
 		try:
 			db.execute("INSERT INTO users (username, hash) VALUES('%s', '%s')" % (request.form.get("username"), password_hash))
 		except:
 			# check if username is valid
-			return redirect("error.html", error="Username already exists!")
+			return redirect("/error", error="Username already exists!")
 		row = db.execute("SELECT * FROM users WHERE username = '%s'" % (request.form.get("username")))
 		session["user_id"] = row.fetchone()["id"]
 		return redirect("/")
