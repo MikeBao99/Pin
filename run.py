@@ -70,7 +70,7 @@ def login():
             return render_template("error.html")
 
         # Remember which user has logged in
-        session["user_id"] = 1
+        session["user_id"] = first['id']
 
         # Redirect user to home page
         return redirect("/")
