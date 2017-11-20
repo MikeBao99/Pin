@@ -36,8 +36,9 @@ def register():
 		if request.form.get("password") != request.form.get("confirmation"):
 			return render_template("error.html")
 		password_hash = generate_password_hash(request.form.get("password"))
-		result = db.execute("INSERT INTO users (username, hash) VALUES('%s', '%s')" % (request.form.get("username"), password_hash))
-		if not result:
+		try:
+			db.execute("INSERT INTO users (username, hash) VALUES('%s', '%s')" % (request.form.get("username"), password_hash))
+		except:
 			# check if username is valid
 			return render_template("error.html")
 		row = db.execute("SELECT * FROM users WHERE username = '%s'" % (request.form.get("username")))
