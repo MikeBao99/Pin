@@ -2,7 +2,7 @@ import os
 from helpers import *
 from sqlalchemy import create_engine
 from flask import Flask, flash, redirect, render_template, request, session
-from flask.ext.session import Session
+from flask_session import Session
 from tempfile import mkdtemp
 from werkzeug.exceptions import default_exceptions
 from werkzeug.security import check_password_hash, generate_password_hash
