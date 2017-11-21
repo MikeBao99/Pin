@@ -3,7 +3,6 @@ from helpers import *
 from sqlalchemy import create_engine
 from flask import Flask, flash, redirect, render_template, request, session
 from flask.ext.session import Session
-#from flask_session import Session
 from tempfile import mkdtemp
 from werkzeug.exceptions import default_exceptions
 from werkzeug.security import check_password_hash, generate_password_hash
@@ -60,7 +59,7 @@ def register():
 @app.route('/login', methods=["GET", "POST"])
 def login():
 	# Forget any user_id
-    session.clear()
+    session.pop['user_id']
 
     # User reached route via POST (as by submitting a form via POST)
     if request.method == "POST":
@@ -95,7 +94,7 @@ def logout():
     """Log user out"""
 
     # Forget any user_id
-    session.clear()
+    session.pop['user_id']
 
     # Redirect user to login form
     return redirect("/")
