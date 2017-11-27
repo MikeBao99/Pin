@@ -80,7 +80,8 @@ def login():
             return redirect("/error", error="Incorrect username and password!")
 
         # Remember which user has logged in
-        session["user_id"] = request.form.get("username")
+        while not session["user_id"]:
+		session["user_id"] = request.form.get("username")
 
         # Redirect user to home page
         return redirect("/")
