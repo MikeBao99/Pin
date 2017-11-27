@@ -59,7 +59,7 @@ def register():
 @app.route('/login', methods=["GET", "POST"])
 def login():
 	# Forget any user_id
-    session.pop['user_id']
+    session.clear()
 
     # User reached route via POST (as by submitting a form via POST)
     if request.method == "POST":
