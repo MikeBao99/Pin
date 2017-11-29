@@ -64,6 +64,7 @@ def login():
     # User reached route via POST (as by submitting a form via POST)
     if request.method == "POST":
 
+	username = request.form.get('username')
         # Ensure username was submitted
         if not request.form.get("username"):
             return redirect("/error")
@@ -80,10 +81,7 @@ def login():
             return redirect("/error", error="Incorrect username and password!")
 
         # Remember which user has logged in
-	x = 1;
-        while 'user_id' not in session and x < 100:
-		session["user_id"] = request.form.get("username")
-		x++
+	session["user_id"] = username
 
         # Redirect user to home page
         return redirect("/")
