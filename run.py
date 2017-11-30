@@ -134,7 +134,10 @@ def create():
 		db.execute("INSERT INTO events (name, class, starttime, endtime, location) VALUES('%s', '%s', '%s', '%s', '%s')" % 
 			(name, request.form.get("class"), request.form.get("location"), request.form.get("startDatetime"), 
 				request.form.get("endDatetime"), request.form.get("location")))
-
+		print "\n\n\n"
+		print request.form.get("startDatetime")
+		print "\n\n\n"
+		sys.stdout.flush()
 		return redirect("/")
 	else:
 		return render_template('create.html')
