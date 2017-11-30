@@ -128,7 +128,7 @@ def create():
 		if not request.form.get("endDatetime"):
 			return redirect("/error")
 
-		row = db.execute("SELECT * FROM users WHERE session["user_id"] = '%s'" % (request.form.get("username")))
+		#row = db.execute("SELECT * FROM users WHERE session["user_id"] = '%s'" % (request.form.get("username")))
 		name = session["user_id"]
 
 		db.execute("INSERT INTO events (name, class, starttime, endtime, location) VALUES('%s', '%s', '%s', '%s', '%s')" % 
