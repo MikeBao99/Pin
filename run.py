@@ -71,7 +71,7 @@ def login():
     # User reached route via POST (as by submitting a form via POST)
     if request.method == "POST":
 
-	username = request.form.get('username')
+		username = request.form.get('username')
         # Ensure username was submitted
         if not request.form.get("username"):
             return redirect("/error")
@@ -118,7 +118,23 @@ def error():
 @login_required	
 def create():
 	if request.method == "POST":
-		
+
+		if not request.form.get("class"):
+			return redirect("/error")
+		if not request.form.get("location"):
+			return redirect("/error")
+		if not request.form.get("startDatetime"):
+			return redirect("/error")
+		if not request.form.get("endDatetime"):
+			return redirect("/error")
+
+		row = db.execute("SELECT * FROM users WHERE session["user_id"] = '%s'" % (request.form.get("username")))
+		name = session["user_id"]
+
+		db.execute("INSERT INTO events (name, class, starttime, endtime, location) VALUES('%s', '%s', '%s', '%s', '%s')" % 
+			(name, request.form.get("class"), request.form.get("location"), request.form.get("startDatetime"), 
+				request.form.get("endDatetime"), request.form.get("location")))
+
 		return redirect("/")
 	else:
 		return render_template('create.html')
