@@ -118,6 +118,11 @@ def error():
 @login_required	
 def create():
 	if request.method == "POST":
+		class
+		location
+		myDate
+		startTime
+		endTime
 		return redirect("/")
 	else:
 		return render_template('create.html')
