@@ -11,7 +11,9 @@ from werkzeug.security import check_password_hash, generate_password_hash
 
 
 app = Flask(__name__)
-app.jinja.env_auto_reload = True
+app.jinja_env.auto_reload = True
+app.config['TEMPLATES_AUTO_RELOAD'] = True
+
 #if app.config["DEBUG"]:
 @app.after_request
 def after_request(response):
