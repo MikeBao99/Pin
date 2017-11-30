@@ -13,27 +13,21 @@
             <input autocomplete="off" autofocus class="form-control" name="location" placeholder="Location" type="text"/>
         </div>
         <div class="form-group">
-                                                                <div class="container">
-                                                        <div class="row">
-                                                            <div class='col-sm-6'>
-                                                                <div class="form-group">
-                                                                    <div class='input-group date' id='datetimepicker1'>
-                                                                        <input type='text' class="form-control" />
-                                                                        <span class="input-group-addon">
-                                                                            <span class="glyphicon glyphicon-calendar"></span>
-                                                                        </span>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <script type="text/javascript">
-                                                                $(function () {
-                                                                    $('#datetimepicker1').datetimepicker();
-                                                                });
-                                                            </script>
-                                                        </div>
-                                                    </div>
-
-        </div>      
+              <input type="date" name="startDate">
+        </div> 
+        <div class="form-group">
+              <input type="date" name="endDate">
+        </div> 
+        <div class="form-group">
+              <input type="time" name="startTime">
+        </div> 
+        <div class="form-group">
+              <input type="time" name="endTime">
+        </div>
+        
+        
+        
+        
         <div class="form-group">
             <button class="btn btn-primary" type="submit">Create</button>
         </div>
