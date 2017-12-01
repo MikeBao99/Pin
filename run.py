@@ -186,7 +186,7 @@ def manage():
     
 @app.route('/delete', methods=["GET", "POST"])
 def delete():
-    val = request.form['delete']
+    val = request.form.get('delete')
     db.execute("DELETE FROM events WHERE id = '%s'" % (val))
     return render_template('homepage.html')
 
