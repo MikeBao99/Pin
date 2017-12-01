@@ -42,21 +42,21 @@ def register():
     if request.method == "POST":
         # Ensure username was submitted
         if not request.form.get("username"):
-            return redirect("/error", error = "Please provide username!")
+            return render_template("error.html", error = "Please provide username!")
         # Ensure password was submitted
         if not request.form.get("password"):
-            return redirect("/error", error = "Please provide password!")
+            return render_template("error.html", error = "Please provide password!")
         if not request.form.get("confirmation"):
-            return redirect("/error", error = "Please provide password confirmation!")
+            return render_template("error.html", error = "Please provide password confirmation!")
 
         if request.form.get("password") != request.form.get("confirmation"):
-            return redirect("/error", error = "Passwords do not match!")
+            return render_template("error.html", error = "Passwords do not match!")
         password_hash = generate_password_hash(request.form.get("password"))
         try:
             db.execute("INSERT INTO users (username, hash) VALUES('%s', '%s')" % (request.form.get("username"), password_hash))
         except:
             # check if username is valid
-            return redirect("/error", error="Username already exists!")
+            return render_template("error.html", error="Username already exists!")
         row = db.execute("SELECT * FROM users WHERE username = '%s'" % (request.form.get("username")))
         session["user_id"] = row.fetchone()["id"]
         return redirect("/")
@@ -74,18 +74,18 @@ def login():
         username = request.form.get('username')
         # Ensure username was submitted
         if not request.form.get("username"):
-            return redirect("/error", error = "Please provide username!")
+            return render_template("error.html", error = "Please provide username!")
 
         # Ensure password was submitted
         elif not request.form.get("password"):
-            return redirect("/error", error = "Please provide password!")
+            return render_template("error.html", error = "Please provide password!")
 
         # Query database for username
         rows = db.execute("SELECT * FROM users WHERE username = '%s'" % (request.form.get("username")))
         first = rows.fetchone()
         # Ensure username exists and password is correct
         if not first or not check_password_hash(first["hash"], request.form.get("password")):
-            return redirect("/error", error="Incorrect username and password!")
+            return render_template("error.html", error="Incorrect username and password!")
 
         # Remember which user has logged in
         session["user_id"] = username
@@ -122,20 +122,20 @@ def create():
         if not request.form.get("class"):
             return render_template("error.html", error = "Please provide class!")
         if not request.form.get("location"):
-            return redirect("/error", error = "Please provide location!")
+            return render_template("error.html", error = "Please provide location!")
         if not request.form.get("startDatetime"):
-            return redirect("/error", error = "Please provide start time!")
+            return render_template("error.html", error = "Please provide start time!")
         if not request.form.get("endDatetime"):
-            return redirect("/error", error = "Please provide end time!")
+            return render_template("error.html", error = "Please provide end time!")
 
         if request.form.get("startDatetime") < datetime.now().strftime('%Y-%m-%d %H:%M:%S'):
-            return redirect("/error", error = "Selected start time has already passed!")
+            return render_template("error.html", error = "Selected start time has already passed!")
 
         if request.form.get("endDatetime") < datetime.now().strftime('%Y-%m-%d %H:%M:%S'):
-            return redirect("/error", error = "Selected end time has already passed!")
+            return render_template("error.html", error = "Selected end time has already passed!")
 
         if request.form.get("startDatetime") < request.form.get("endDatetime"):
-            return redirect("/error", error = "End time must come before start time!")
+            return render_template("error.html", error = "End time must come before start time!")
 
         #row = db.execute("SELECT * FROM users WHERE session["user_id"] = '%s'" % (request.form.get("username")))
         name = session["user_id"]
