@@ -28,8 +28,11 @@
 						<th>{{event["starttime"]}}</th>
 						<th>{{event["endtime"]}}</th>
 						<th>
+							<form action="/edit" method="get">
+								<input type="hidden" name="edit" value="{{event["id"]}}">
+								<button type="submit" class="btn btn-danger" name="edit2">Edit</button>
+							</form>
 							
-							<button type="submit" class="btn btn-warning" name="edit" value="{{event["id"]}}">Edit</button>
 						</th>
 						<th>
 							<form action="/delete" method="post">
