@@ -151,7 +151,7 @@ def search():
 		while row:
 			events.append(row)
 			row = eventsrow.fetchone()
-		return render_template('manage.html', events = events)
+		return render_template('search.html', events = events)
 	else:
 
     		eventsrow = db.execute("SELECT * FROM events")
@@ -160,7 +160,7 @@ def search():
 		while row:
 			events.append(row)
 			row = eventsrow.fetchone()
-		return render_template('manage.html', events = events)
+		return render_template('search.html', events = events)
 
 	
 @app.route('/manage', methods=["GET", "POST"])
