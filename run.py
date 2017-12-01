@@ -93,8 +93,8 @@ def login():
 	print str(session) + "\n\n\n"
 	sys.stdout.flush()
 
-        # Redirect user to search page
-        return redirect("/search")
+        # Redirect user to home page
+        return redirect("/create")
 
     # User reached route via GET (as by clicking a link or via redirect)
     else:
@@ -145,7 +145,7 @@ def create():
 def search():
 	if request.method == "POST":
 		q = request.form.get("search") + "%"
-    		eventsrow = db.execute("SELECT * FROM events WHERE class LIKE %s" % (q))
+    		eventsrow = db.execute("SELECT * FROM events WHERE class LIKE '%s'" % (q))
 		events = []
 		row = eventsrow.fetchone()
 		while row:
@@ -154,7 +154,7 @@ def search():
 		return render_template('manage.html', events = events)
 	else:
 		q = "%"
-    		eventsrow = db.execute("SELECT * FROM events WHERE class LIKE %s" % (q))
+    		eventsrow = db.execute("SELECT * FROM events WHERE class LIKE '%s'" % (q))
 		events = []
 		row = eventsrow.fetchone()
 		while row:
