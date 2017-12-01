@@ -141,7 +141,28 @@ def create():
 		return redirect("/")
 	else:
 		return render_template('create.html')
+@app.route('/search', methods=["GET", "POST"])
+def search:
+	if request.method = "POST":
+		q = request.form.get("search") + "%"
+    		eventsrow = db.execute("SELECT * FROM events WHERE class LIKE :q", q=q)
+		events = []
+		row = eventsrow.fetchone()
+		while row:
+			events.append(row)
+			row = eventsrow.fetchone()
+		return render_template('manage.html', events = events)
+	else:
+		q = "%"
+    		eventsrow = db.execute("SELECT * FROM events WHERE class LIKE :q", q=q)
+		events = []
+		row = eventsrow.fetchone()
+		while row:
+			events.append(row)
+			row = eventsrow.fetchone()
+		return render_template('manage.html', events = events)
 
+	
 @app.route('/manage', methods=["GET", "POST"])
 def manage():
 	eventsrow = db.execute("SELECT * FROM events WHERE name = '%s'" % (session["user_id"]))
