@@ -93,8 +93,8 @@ def login():
 	print str(session) + "\n\n\n"
 	sys.stdout.flush()
 
-        # Redirect user to home page
-        return redirect("/create")
+        # Redirect user to search page
+        return redirect("/search")
 
     # User reached route via GET (as by clicking a link or via redirect)
     else:
