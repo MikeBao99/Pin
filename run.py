@@ -144,7 +144,7 @@ def create():
 
 @app.route('/manage', methods=["GET", "POST"])
 def manage():
-	eventsrow = db.execute("SELECT * FROM events WHERE username = '%s'", % (session["user_id"]))
+	eventsrow = db.execute("SELECT * FROM events WHERE username = '%s'" % (session["user_id"]))
 	events = []
 	row = eventsrow.fetchone()
 	while row:
