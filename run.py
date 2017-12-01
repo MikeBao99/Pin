@@ -183,7 +183,7 @@ def manage():
 @app.route('/edit', methods=["GET", "POST"])
 def edit():
     if request.form.get("type") == "post":
-        db.execute("UPDATE events SET class = '%s', location = '%s', starttime = '%s', endtime = '%s' WHERE id = '%s'" % (request.form.get('class'), request.form.get('location'), request.form.get('startDatetime'), request.form.get('endDatetime'), request.form.get('id')))
+        db.execute("UPDATE events SET class = '%s', location = '%s', starttime = '%s', endtime = '%s' WHERE id = '%s'" % (request.form.get('class'), request.form.get('location'), request.form.get('startDatetime').replace(" ","T"), request.form.get('endDatetime').replace(" ","T"), request.form.get('id')))
         return redirect("/manage")
     else:
         val = request.form.get("edit")
