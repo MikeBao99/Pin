@@ -134,17 +134,23 @@ def create():
 		db.execute("INSERT INTO events (name, class, starttime, endtime, location) VALUES('%s', '%s', '%s', '%s', '%s')" % 
 			(name, request.form.get("class"),  request.form.get("startDatetime"), 
 				request.form.get("endDatetime"), request.form.get("location")))
-	
+		print "\n\n\n"
+		print request.form.get("startDatetime")
+		print "\n\n\n"
+		sys.stdout.flush()
 		return redirect("/")
 	else:
 		return render_template('create.html')
 
 @app.route('/manage', methods=["GET", "POST"])
 def manage():
-	if request.method == "POST":
-		return redirect("/")
-	else:
-		return render_template('manage.html')
+	eventsrow = db.execute("SELECT * FROM events WHERE username = '%s'", % (session["user_id"]))
+	events = []
+	row = eventsrow.fetchone()
+	while row:
+		events.append(row)
+		row = eventsrow.fetchone()
+	return render_template('manage.html', events = events, name = session["user_id"])
 
 
 # go to localhost:8000 to view
