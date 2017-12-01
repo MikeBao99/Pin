@@ -186,7 +186,9 @@ def edit():
     
 @app.route('/delete', methods=["GET", "POST"])
 def delete():
-    
+    val = request.form['delete']
+    db.execute("DELETE FROM events WHERE id = '%s'" % (val))
+    return redirect('/manage')
 
 
 # go to localhost:8000 to view
