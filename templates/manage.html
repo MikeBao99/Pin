@@ -29,12 +29,12 @@
 						<th>{{event["endtime"]}}</th>
 						<th>
 							
-							<button type="button" class="btn btn-warning" name="edit" value="{{event["id"]}}">Edit</button>
+							<button type="submit" class="btn btn-warning" name="edit" value="{{event["id"]}}">Edit</button>
 						</th>
 						<th>
 							<form action="/delete" methods="post">
 								
-								<button type="button" class="btn btn-danger" name="delete" value="{{event["id"]}}">Delete</button>
+								<button type="submit" class="btn btn-danger" name="delete" value="{{event["id"]}}">Delete</button>
 							</form>
 						</th>
 					</tr>
