@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% block content %}
-    <form action="{{ url_for('search') }}" method="post">
+    <form action="/search" method="post">
         <div class="form-group">
             <input autocomplete="off" autofocus class="form-control" name="search" placeholder="Search class" type="text"/>
         </div>
@@ -14,7 +14,7 @@
         <div class="form-group">
             <button class="btn btn-primary" type="submit">Search</button>
         </div>
-    </form>
+    
 
     <div class="container">
 		<h2>Events</h2>
@@ -42,4 +42,5 @@
 			</tbody>
 		</table>
 	</div>
+	   </form>
 {% endblock %}
