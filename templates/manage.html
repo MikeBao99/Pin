@@ -27,8 +27,8 @@
 						<th>{{event["location"]}}</th>
 						<th>{{event["starttime"]}}</th>
 						<th>{{event["endtime"]}}</th>
-						<th><button type="button" class="btn btn-warning" value="{{event["id"]}}">Edit</button></th>
-						<th><button type="button" class="btn btn-danger" value="{{event["id"]}}">Delete</button></th>
+						<th><button type="button" class="btn btn-warning" name="edit" value="{{event["id"]}}">Edit</button></th>
+						<th><button type="button" class="btn btn-danger" name="delete" value="{{event["id"]}}">Delete</button></th>
 					</tr>
 				{% endfor %}
 				
