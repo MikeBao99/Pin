@@ -153,8 +153,8 @@ def search():
 			row = eventsrow.fetchone()
 		return render_template('manage.html', events = events)
 	else:
-		q = "%"
-    		eventsrow = db.execute("SELECT * FROM events WHERE class LIKE '%s'" % (q))
+
+    		eventsrow = db.execute("SELECT * FROM events")
 		events = []
 		row = eventsrow.fetchone()
 		while row:
