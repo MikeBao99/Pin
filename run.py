@@ -71,7 +71,7 @@ def login():
     # User reached route via POST (as by submitting a form via POST)
     if request.method == "POST":
 
-    username = request.form.get('username')
+        username = request.form.get('username')
         # Ensure username was submitted
         if not request.form.get("username"):
             return redirect("/error", error = "Please provide username!")
@@ -82,16 +82,16 @@ def login():
 
         # Query database for username
         rows = db.execute("SELECT * FROM users WHERE username = '%s'" % (request.form.get("username")))
-    first = rows.fetchone()
+        first = rows.fetchone()
         # Ensure username exists and password is correct
         if not first or not check_password_hash(first["hash"], request.form.get("password")):
             return redirect("/error", error="Incorrect username and password!")
 
         # Remember which user has logged in
-    session["user_id"] = username
-    print "\n\n\n" + username + "\n\n\n"
-    print str(session) + "\n\n\n"
-    sys.stdout.flush()
+        session["user_id"] = username
+        print "\n\n\n" + username + "\n\n\n"
+        print str(session) + "\n\n\n"
+        sys.stdout.flush()
 
         # Redirect user to home page
         return redirect("/create")
