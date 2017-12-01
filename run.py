@@ -188,7 +188,7 @@ def manage():
 def delete():
     val = request.form['delete']
     db.execute("DELETE FROM events WHERE id = '%s'" % (val))
-    return redirect('/manage')
+    return render_template('homepage.html')
 
 
 # go to localhost:8000 to view
