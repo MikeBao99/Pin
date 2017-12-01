@@ -191,6 +191,8 @@ def edit():
         val = request.form.get("edit")
         eventsrow = db.execute("SELECT * FROM events WHERE id = '%s'" % (val))
         events= eventsrow.fetchone()
+        events["starttime"] = replace_spaces(str(events["starttime"]))
+        events["endtime"] = replace_spaces(str(events["endtime"]))
         return render_template('edit.html', events = events)
     
 @app.route('/delete', methods=["GET", "POST"])
