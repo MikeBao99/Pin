@@ -132,8 +132,8 @@ def create():
         if request.form.get("endDatetime") < datetime.now().strftime('%Y-%m-%d %H:%M:%S'):
             return render_template("error.html", error = "Selected end time has already passed!")
 
-        if request.form.get("startDatetime") < request.form.get("endDatetime"):
-            return render_template("error.html", error = "End time must come before start time!")
+        if request.form.get("startDatetime") > request.form.get("endDatetime"):
+            return render_template("error.html", error = "End time must come after start time!")
 
         #row = db.execute("SELECT * FROM users WHERE session["user_id"] = '%s'" % (request.form.get("username")))
         name = session["user_id"]
