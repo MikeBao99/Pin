@@ -15,5 +15,33 @@
             <button class="btn btn-primary" type="submit">Search</button>
         </div>
     
+        
+        
+        <div class="container">
+        <h2>Events</h2>
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>User</th>
+                    <th>Class</th>
+                    <th>Location</th>
+                    <th>Start Time</th>
+                    <th>End Time</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for event in events[:10] %}
+                    <tr>
+                        <th>{{event["name"]}}</th>
+                        <th>{{event["class"]}}</th>
+                        <th>{{event["location"]}}</th>
+                        <th>{{event["starttime"]}}</th>
+                        <th>{{event["endtime"]}}</th>
+                    </tr>
+                {% endfor %}
+                
+            </tbody>
+        </table>
+        </div>
     </form>
 {% endblock %}
