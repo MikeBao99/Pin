@@ -142,7 +142,7 @@ def create():
 	else:
 		return render_template('create.html')
 @app.route('/search', methods=["GET", "POST"])
-def search:
+def search():
 	if request.method = "POST":
 		q = request.form.get("search") + "%"
     		eventsrow = db.execute("SELECT * FROM events WHERE class LIKE :q", q=q)
