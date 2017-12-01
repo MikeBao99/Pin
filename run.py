@@ -89,9 +89,7 @@ def login():
 
         # Remember which user has logged in
         session["user_id"] = username
-        print "\n\n\n" + username + "\n\n\n"
-        print str(session) + "\n\n\n"
-        sys.stdout.flush()
+        flash("You have been logged in!")
 
         # Redirect user to home page
         return redirect("/")
