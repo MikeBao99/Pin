@@ -180,8 +180,8 @@ def manage():
         row = eventsrow.fetchone()
     return render_template('manage.html', events = events, name = session["user_id"])
 
-@app.route('/edit', methods=["GET", "POST"])
-def edit():
+# @app.route('/edit', methods=["GET", "POST"])
+# def edit():
     
     
 @app.route('/delete', methods=["GET", "POST"])
