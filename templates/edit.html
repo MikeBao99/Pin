@@ -7,7 +7,7 @@
 {% block content %}
     <form action="{{ url_for('edit') }}" method="post">
         <div class="form-group">
-            <input type="hidden" name="id" value="{{event["id"]}}">
+            <input type="hidden" name="id" value="{{events["id"]}}">
             <input type="hidden" name="type" value="post">
             <input autocomplete="off" autofocus class="form-control" name="class" value="{{events["class"]}}" type="text"/>
         </div>
