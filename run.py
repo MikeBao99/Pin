@@ -180,15 +180,22 @@ def manage():
         row = eventsrow.fetchone()
     return render_template('manage.html', events = events, name = session["user_id"])
 
-# @app.route('/edit', methods=["GET", "POST"])
-# def edit():
-    
+@app.route('/edit', methods=["GET", "POST"])
+def edit():
+    if request.method == "POST":
+        db.execute("UPDATE events SET class = '%s', location = '%s', starttime = '%s', endtime = '%s', WHERE id = %s" % (request.form.get('class'), request.form.get('location'), request.form.get('startDatetime'), request.form.get('endDatetime'), request.form.get('id')))
+        return redirect("/manage")
+    else:
+        val = request.form.get("edit")
+        eventsrow = db.execute("SELECT * FROM events WHERE id = '%s'" % (val))
+        events= eventsrow.fetchone()
+        return render_template('edit.html', events = events)
     
 @app.route('/delete', methods=["GET", "POST"])
 def delete():
     val = request.form.get('delete')
     db.execute("DELETE FROM events WHERE id = '%s'" % (val))
-    return render_template('homepage.html')
+    return redirect('/manage')
 
 
 # go to localhost:8000 to view
