@@ -185,12 +185,14 @@ def edit():
     if request.form.get("type") == "post":
         print request.form.get("startDatetime") + "\n\n"
         sys.stdout.flush()
-        db.execute("UPDATE events SET class = '%s', location = '%s', starttime = '%s', endtime = '%s' WHERE id = '%s'" % (request.form.get('class'), request.form.get('location'), request.form.get('startDatetime').replace(" ","T"), request.form.get('endDatetime').replace(" ","T"), request.form.get('id')))
+        db.execute("UPDATE events SET class = '%s', location = '%s', starttime = '%s', endtime = '%s' WHERE id = '%s'" % (request.form.get('class'), request.form.get('location'), request.form.get('startDatetime'), request.form.get('endDatetime'), request.form.get('id')))
         return redirect("/manage")
     else:
         val = request.form.get("edit")
         eventsrow = db.execute("SELECT * FROM events WHERE id = '%s'" % (val))
         events= eventsrow.fetchone()
+        events["starttime"] = events["starttime"].replace(" ","T")
+        events["endtime"] = events["endtime"].replace(" ","T")
         return render_template('edit.html', events = events)
     
 @app.route('/delete', methods=["GET", "POST"])
