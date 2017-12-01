@@ -32,7 +32,7 @@
 							<button type="submit" class="btn btn-warning" name="edit" value="{{event["id"]}}">Edit</button>
 						</th>
 						<th>
-							<form action="/delete">
+							<form action="/delete" method="post">
 								<input type="hidden" name="delete" value="{{event["id"]}}">
 								<button type="submit" class="btn btn-danger" name="delete2">Delete</button>
 							</form>
