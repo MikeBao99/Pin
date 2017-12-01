@@ -12,5 +12,11 @@
 		  	</div>
 		</div>	
 	</head>
-    
+	{% if session['user_id'] %}
+	<div class="container text-center">
+		<h3>
+			Hello, {{session['user_id']}}
+		<\h3>
+	<\div>
+    	{% endif %}
 {% endblock %}
