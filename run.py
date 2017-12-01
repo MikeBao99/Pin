@@ -120,7 +120,7 @@ def create():
     if request.method == "POST":
 
         if not request.form.get("class"):
-            return render_template("/error", error = "Please provide class!")
+            return render_template("error.html", error = "Please provide class!")
         if not request.form.get("location"):
             return redirect("/error", error = "Please provide location!")
         if not request.form.get("startDatetime"):
