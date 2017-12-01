@@ -144,7 +144,7 @@ def create():
 @app.route('/search', methods=["GET", "POST"])
 def search():
 	if request.method == "POST":
-		q = request.form.get("search") + "%"
+		q = request.form.get("search") + "%%"
     		eventsrow = db.execute("SELECT * FROM events WHERE class LIKE '%s'" % (q))
 		events = []
 		row = eventsrow.fetchone()
