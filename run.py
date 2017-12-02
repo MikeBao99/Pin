@@ -152,7 +152,7 @@ def create():
 def search():
     if request.method == "POST":
         q = "%%" + request.form.get("search") + "%%"
-        eventsrow = db.execute("SELECT * FROM events WHERE LOWER(class) LIKE LOWER('%s')" % (q))
+        eventsrow = db.execute("SELECT * FROM events WHERE LOWER(class) LIKE LOWER('%s') ORDER BY starttime DESC" % (q))
         events = []
         row = eventsrow.fetchone()
         while row:
