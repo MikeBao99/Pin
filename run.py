@@ -161,7 +161,7 @@ def search():
         return render_template('search.html', events = events)
     else:
 
-        eventsrow = db.execute("SELECT * FROM events")
+        eventsrow = db.execute("SELECT * FROM events ORDER BY starttime DESC")
         events = []
         row = eventsrow.fetchone()
         while row:
