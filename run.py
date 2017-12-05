@@ -152,7 +152,7 @@ def create():
 def search():
     if request.method == "POST":
         q = "%%" + request.form.get("search") + "%%"
-        eventsrow = db.execute("SELECT * FROM events WHERE LOWER(class) LIKE LOWER('%s') ORDER BY starttime DESC" % (q))
+        eventsrow = db.execute("SELECT * FROM events WHERE LOWER(class) LIKE LOWER('%s') AND endtime > CURRENT_TIMESTAMP ORDER BY starttime ASC" % (q))
         events = []
         row = eventsrow.fetchone()
         while row:
@@ -161,7 +161,7 @@ def search():
         return render_template('search.html', events = events)
     else:
 
-        eventsrow = db.execute("SELECT * FROM events ORDER BY starttime DESC")
+        eventsrow = db.execute("SELECT * FROM events AND endtime > CURRENT_TIMESTAMP ORDER BY starttime ASC")
         events = []
         row = eventsrow.fetchone()
         while row:
@@ -172,7 +172,7 @@ def search():
     
 @app.route('/manage', methods=["GET", "POST"])
 def manage():
-    eventsrow = db.execute("SELECT * FROM events WHERE name = '%s'" % (session["user_id"]))
+    eventsrow = db.execute("SELECT * FROM events WHERE endtime > CURRENT_TIMESTAMP AND name = '%s'" % (session["user_id"]))
     events = []
     row = eventsrow.fetchone()
     while row:
