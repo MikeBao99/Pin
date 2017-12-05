@@ -3,6 +3,9 @@ from flask import Flask, flash, redirect, render_template, request, session
 from flask_session import Session
 
 def replace_spaces(word):
+    """
+    This helper method changes from one datetime format to another.
+    """
     answer = ""
     for letter in word:
         if letter == " ":
