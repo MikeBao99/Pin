@@ -162,7 +162,7 @@ def search():
         # Store user search request
         q = "%%" + request.form.get("search") + "%%"
         # Query Database
-        eventsrow = db.execute("SELECT * FROM events WHERE LOWER(class) LIKE LOWER('%s') AND endtime > CURRENT_TIMESTAMP ORDER BY starttime ASC" % (q))
+        eventsrow = db.execute("SELECT * FROM events WHERE LOWER(class) LIKE LOWER('%s') ORDER BY starttime ASC" % (q))
         events = []
         row = eventsrow.fetchone()
         while row:
@@ -182,7 +182,7 @@ def search():
 # Handles the manage 
 @app.route('/manage', methods=["GET", "POST"])
 def manage():
-    eventsrow = db.execute("SELECT * FROM events WHERE AND name = '%s'" % (session["user_id"]))
+    eventsrow = db.execute("SELECT * FROM events WHERE name = '%s'" % (session["user_id"]))
     events = []
     row = eventsrow.fetchone()
     while row:
