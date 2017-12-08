@@ -171,7 +171,7 @@ def search():
         return render_template('search.html', events = events)
     else:
         # Prints out all events in a table, Query database
-        eventsrow = db.execute("SELECT * FROM events AND endtime > CURRENT_TIMESTAMP ORDER BY starttime ASC")
+        eventsrow = db.execute("SELECT * FROM events ORDER BY starttime ASC")
         events = []
         row = eventsrow.fetchone()
         while row:
@@ -182,7 +182,7 @@ def search():
 # Handles the manage 
 @app.route('/manage', methods=["GET", "POST"])
 def manage():
-    eventsrow = db.execute("SELECT * FROM events WHERE endtime > CURRENT_TIMESTAMP AND name = '%s'" % (session["user_id"]))
+    eventsrow = db.execute("SELECT * FROM events WHERE AND name = '%s'" % (session["user_id"]))
     events = []
     row = eventsrow.fetchone()
     while row:
