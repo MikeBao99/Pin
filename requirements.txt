@@ -3,7 +3,7 @@ Flask_Session
 sqlalchemy
 redis
 psycopg2
-Jinja2==2.9.6
+Jinja2==2.11.3
 MarkupSafe==1.0
 Werkzeug==0.12.2
 argparse==1.2.1
